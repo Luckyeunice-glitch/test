@@ -2,21 +2,17 @@ import pygame
 import time
 import random
 
-# Khởi tạo pygame
 pygame.init()
 
-# Kích thước cửa sổ game
 width = 600
 height = 400
 
-# Màu sắc
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (213, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
 
-# Tạo cửa sổ game
 dis = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Snake Game by Fen')
 
@@ -75,6 +71,7 @@ def gameLoop():
                         game_close = False
                     if event.key == pygame.K_c:
                         gameLoop()
+                    
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
