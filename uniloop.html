@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniLoop - Vòng tuần hoàn đồ dùng sinh viên</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #fbfbf9;
+      color: #1e3a2b;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    header {
+      padding: 18px 6%;
+      background: #ffffff;
+      border-bottom: 1px solid #e2ece4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .back-btn {
+      text-decoration: none;
+      color: #225740;
+      font-weight: 700;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-btn:hover { text-decoration: underline; }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 0 25px;
+    }
+    .logo {
+      font-size: 40px;
+      font-weight: 900;
+      color: #1b4d3e;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slogan-pill {
+      display: inline-block;
+      background: #d8ebd9;
+      color: #1b4d3e;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 6px 20px;
+      border-radius: 25px;
+      margin-top: 10px;
+    }
+    .quote-box {
+      margin: 20px auto 0;
+      max-width: 520px;
+      background: #fdf6d8;
+      border: 1px dashed #d9ca8b;
+      border-radius: 12px;
+      padding: 12px 20px;
+      color: #63531b;
+      font-weight: 600;
+      font-size: 14.5px;
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 35px 0;
+    }
+    .story-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 22px;
+      border: 1px solid #e1ede4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .story-card h3 {
+      font-size: 17px;
+      color: #1b4d3e;
+      margin-bottom: 12px;
+    }
+    .story-card ul { list-style: none; padding: 0; }
+    .story-card ul li {
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #415e50;
+      position: relative;
+      padding-left: 20px;
+    }
+    .story-card ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #2d7a58;
+      font-weight: bold;
+    }
+    .mission-section {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px 22px;
+      border: 1px solid #e1ede4;
+      margin-bottom: 35px;
+    }
+    .mission-title {
+      text-align: center;
+      font-size: 21px;
+      font-weight: 800;
+      color: #1b4d3e;
+      margin-bottom: 22px;
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+    .mission-item {
+      text-align: center;
+      padding: 16px 10px;
+      border-radius: 14px;
+      background: #f5f9f6;
+    }
+    .mission-item .icon { font-size: 28px; margin-bottom: 6px; }
+    .mission-item h4 { font-size: 15px; font-weight: 700; color: #1b4d3e; margin-bottom: 3px; }
+    .mission-item p { font-size: 12.5px; color: #557263; }
+    .section-box {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      border: 1.5px solid #e1ede4;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 15px rgba(27,77,62,0.04);
+    }
+    .cta-box {
+      background: linear-gradient(135deg, #1f4f3e, #2d6a4f);
+      color: #ffffff;
+      border-radius: 20px;
+      padding: 35px 25px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .cta-box h3 { font-size: 21px; margin-bottom: 10px; }
+    .cta-box p { font-size: 14.5px; color: #c7e3d3; margin-bottom: 20px; }
+    .cta-btn {
+      display: inline-block;
+      background: #ffffff;
+      color: #1b4d3e;
+      font-weight: 800;
+      font-size: 14.5px;
+      padding: 11px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-btn">← Quay về Cổng chính</a>
+    <div style="font-weight: 700; color: #1b4d3e;">🌱 UniLoop Project</div>
+  </header>
+
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="logo">🌱 UniLoop</div>
+      <br>
+      <div class="slogan-pill">Vòng tuần hoàn đồ dùng sinh viên · Dùng lại thay vì bỏ đi</div>
+      <div class="quote-box">💡 Đồ cũ không có nghĩa là hết giá trị! — Reuse · Not Waste ♡</div>
+    </section>
+
+    <!-- CÂU CHUYỆN -->
+    <div class="story-grid">
+      <div class="story-card">
+        <h3>🎒 Bạn có từng...</h3>
+        <ul>
+          <li>Mua đồ dùng học tập rồi chỉ dùng vài lần?</li>
+          <li>Muốn tìm sách giáo trình, tài liệu với giá mềm hơn?</li>
+          <li>Có món đồ còn tốt nhưng không còn dùng tới?</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <h3>✨ Và bạn có biết?</h3>
+        <p style="font-size: 14px; color: #415e50;">
+          Món đồ không còn cần thiết với bạn có thể là <b>điều vô cùng hữu ích với bạn sinh viên khác!</b>
+        </p>
+        <p style="margin-top: 10px; font-weight: 700; color: #225740; font-size: 13.5px;">
+          "Một món đồ – nhiều hành trình – nhiều giá trị ♡"
+        </p>
+      </div>
+    </div>
+
+    <!-- SỨ MỆNH -->
+    <section class="mission-section">
+      <div class="mission-title">🌿 Sứ mệnh của UniLoop</div>
+      <div class="mission-grid">
+        <div class="mission-item">
+          <div class="icon">♻️</div>
+          <h4>Tái sử dụng</h4>
+          <p>Kéo dài vòng đời đồ dùng.</p>
+        </div>
+        <div class="mission-item">
+          <div class="icon">🪙</div>
+          <h4>Tiết kiệm</h4>
+          <p>Tối ưu chi phí học tập.</p>
+        </div>
+        <div class="mission-item">
+          <div class="icon">🤝</div>
+          <h4>Kết nối</h4>
+          <p>Đưa đồ đến đúng người cần.</p>
+        </div>
+        <div class="mission-item">
+          <div class="icon">🍃</div>
+          <h4>Sống xanh</h4>
+          <p>Lan tỏa lối sống bền vững.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KHUNG 1: TRẠM CHIA SẺ & ĐỔI ĐỒ CŨ (TÁCH BIỆT HOÀN TOÀN) -->
+    <section class="section-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <div>
+          <h2 style="font-size: 21px; color: #1b4d3e; font-weight: 800;">🔄 Trạm chia sẻ & Đổi đồ cũ</h2>
+          <p style="font-size: 13.5px; color: #557263;">Món đồ bạn không dùng nữa có thể cứu nguy cho một bạn sinh viên khác!</p>
+        </div>
+        <button onclick="toggleItemForm()" style="background: #225740; color: #fff; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+          📦 Đăng món đồ bạn muốn tặng/pass
+        </button>
+      </div>
+
+      <!-- FORM ĐĂNG ĐỒ -->
+      <div id="itemUploadForm" style="display: none; background: #f5f9f6; border: 1.5px solid #cce3d3; border-radius: 16px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="font-size: 16px; color: #1b4d3e; margin-bottom: 14px;">Thông tin món đồ</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Tên món đồ *</label>
+            <input type="text" id="itemName" placeholder="Vd: Balo học sinh, Máy tính Casio 580..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cce3d3; margin-top: 5px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Tình trạng / Giá *</label>
+            <input type="text" id="itemStatus" placeholder="Vd: Tặng 0đ (hoặc Pass 50k)..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cce3d3; margin-top: 5px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Liên hệ (SĐT / Zalo) *</label>
+            <input type="text" id="itemContact" placeholder="Vd: Zalo 0912..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cce3d3; margin-top: 5px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Ảnh chụp thật *</label>
+            <input type="file" id="itemImage" accept="image/*" style="width: 100%; padding: 6px 10px; border-radius: 8px; border: 1px solid #cce3d3; margin-top: 5px; background: #fff;">
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button onclick="saveUserItem()" style="background: #2d7a58; color: #fff; border: none; padding: 9px 20px; border-radius: 8px; font-weight: 700; cursor: pointer;">Đăng ngay</button>
+          <button onclick="toggleItemForm()" style="background: #e2ede5; color: #225740; border: none; padding: 9px 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Đóng lại</button>
+        </div>
+      </div>
+
+      <!-- DANH SÁCH ĐỒ -->
+      <div id="itemsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px;"></div>
+    </section>
+
+    <!-- KHUNG 2: GÓC CẦN TÌM ĐỒ (NẰM DƯỚI RIÊNG BIỆT) -->
+    <section class="section-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <div>
+          <h2 style="font-size: 21px; color: #1b4d3e; font-weight: 800;">🙋‍♂️ Góc cần tìm đồ & Hỗ trợ sinh viên</h2>
+          <p style="font-size: 13.5px; color: #557263;">Bạn đang thiếu sách vở, đồ dùng? Đăng tin để mọi người hỗ trợ nhé!</p>
+        </div>
+        <button onclick="toggleWishForm()" style="background: #e2ede5; color: #1b4d3e; border: 1.5px solid #cce3d3; padding: 10px 18px; border-radius: 12px; font-weight: 700; cursor: pointer;">
+          📝 Đăng tin cần tìm đồ
+        </button>
+      </div>
+
+      <!-- FORM ĐĂNG TIN CẦN TÌM -->
+      <div id="wishUploadForm" style="display: none; background: #fdfaf4; border: 1.5px solid #f0e2c8; border-radius: 16px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="font-size: 16px; color: #855b14; margin-bottom: 14px;">Bạn đang cần tìm món đồ gì?</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #855b14;">Món đồ bạn đang cần *</label>
+            <input type="text" id="wishName" placeholder="Vd: Cần mượn giáo trình Triết K76..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #d9ca8b; margin-top: 5px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #855b14;">Nhu cầu *</label>
+            <input type="text" id="wishType" placeholder="Vd: Mượn ôn thi 2 tuần / Mua lại rẻ..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #d9ca8b; margin-top: 5px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #855b14;">Tên & Liên hệ (Zalo / SĐT) *</label>
+            <input type="text" id="wishContact" placeholder="Vd: Thuỳ Linh - Zalo 0987..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #d9ca8b; margin-top: 5px; outline: none;">
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button onclick="saveUserWish()" style="background: #b45309; color: #fff; border: none; padding: 9px 20px; border-radius: 8px; font-weight: 700; cursor: pointer;">Đăng tin tìm đồ</button>
+          <button onclick="toggleWishForm()" style="background: #fef3c7; color: #b45309; border: none; padding: 9px 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Hủy</button>
+        </div>
+      </div>
+
+      <!-- DANH SÁCH BÀI TÌM ĐỒ (TRỐNG TRƠN) -->
+      <div id="wishGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;"></div>
+    </section>
+
+    <!-- KÊU GỌI HÀNH ĐỘNG -->
+    <div class="cta-box">
+      <h3>Đừng vội bỏ đi, hãy để món đồ tiếp tục hành trình!</h3>
+      <p>Cùng UniLoop lan tỏa lối sống tiết kiệm hơn – xanh hơn – ý nghĩa hơn nhé.</p>
+      <a href="https://facebook.com/profile.php?id=61595467705921" target="_blank" class="cta-btn">Theo dõi UniLoop ngay ↗</a>
+    </div>
+  </div>
+
+  <!-- BONG BÓNG CHAT MESSENGER NỔI -->
+  <div id="fbChatBubble" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; display: flex; align-items: center; gap: 10px;">
+    <div style="background: #ffffff; color: #1b4d3e; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.12); border: 1px solid #dce8df;">
+      Chat với UniLoop 💬
+    </div>
+    <a href="https://m.me/61595467705921" target="_blank" style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #00B2FF, #006AFF); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0, 106, 255, 0.4); text-decoration: none;" title="Nhắn tin Messenger">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 2C7.37 2 2 7.07 2 13.33C2 16.9 3.73 20.07 6.44 22.1V26L10.19 23.94C11.39 24.28 12.67 24.47 14 24.47C20.63 24.47 26 19.4 26 13.33C26 7.07 20.63 2 14 2ZM15.42 17.26L12.35 13.98L6.37 17.31L12.94 10.33L16.06 13.61L21.99 10.33L15.42 17.26Z" fill="white"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- JAVASCRIPT XỬ LÝ CẢ 2 PHẦN -->
+  <script>
+    // 1. XỬ LÝ ĐĂNG ĐỒ DÙNG
+    function toggleItemForm() {
+      const f = document.getElementById('itemUploadForm');
+      f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
+    }
+
+    function loadUserItems() {
+      const list = JSON.parse(localStorage.getItem('uniloop_user_items') || '[]');
+      const container = document.getElementById('itemsGrid');
+      if (list.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 25px; color: #7d9b8d; background: #ffffff; border-radius: 12px; border: 1px dashed #cce3d3;">Chưa có món đồ nào được đăng.</div>`;
+        return;
+      }
+      container.innerHTML = list.map(item => `
+        <div style="background: #fff; border-radius: 14px; border: 1px solid #dce8df; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+          <img src="${item.image}" style="width: 100%; height: 140px; object-fit: cover;" alt="Món đồ">
+          <div style="padding: 14px; flex: 1; display: flex; flex-direction: column;">
+            <span style="font-size: 11px; font-weight: 800; color: #2d7a58; background: #eaf4ed; padding: 2px 8px; border-radius: 6px; width: fit-content; margin-bottom: 6px;">${item.status}</span>
+            <h4 style="font-size: 15px; color: #1b4d3e; font-weight: 700; margin-bottom: 4px;">${item.name}</h4>
+            <p style="font-size: 12px; color: #6c8a7b; margin-bottom: 12px;">Liên hệ: <b>${item.contact}</b></p>
+            <a href="https://zalo.me/${item.contact.replace(/[^0-9]/g, '')}" target="_blank" style="margin-top: auto; display: block; text-align: center; background: #225740; color: #fff; text-decoration: none; padding: 7px; border-radius: 6px; font-weight: 700; font-size: 12px;">Nhắn tin xin đồ ➔</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function saveUserItem() {
+      const name = document.getElementById('itemName').value.trim();
+      const status = document.getElementById('itemStatus').value.trim();
+      const contact = document.getElementById('itemContact').value.trim();
+      const fileInput = document.getElementById('itemImage');
+
+      if (!name || !status || !contact) {
+        alert('Vui lòng điền đủ Tên đồ, Tình trạng và Cách liên hệ!');
+        return;
+      }
+      if (!fileInput.files || !fileInput.files[0]) {
+        alert('Vui lòng tải lên 1 tấm ảnh món đồ!');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const newItem = { name, status, contact, image: e.target.result };
+        const list = JSON.parse(localStorage.getItem('uniloop_user_items') || '[]');
+        list.unshift(newItem);
+        localStorage.setItem('uniloop_user_items', JSON.stringify(list));
+        
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemStatus').value = '';
+        document.getElementById('itemContact').value = '';
+        fileInput.value = '';
+        toggleItemForm();
+        loadUserItems();
+        alert('Đăng món đồ thành công lên UniLoop!');
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+
+    // 2. XỬ LÝ GÓC CẦN TÌM ĐỒ (TRỐNG TRƠN KHÔNG MẪU)
+    function toggleWishForm() {
+      const f = document.getElementById('wishUploadForm');
+      f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
+    }
+
+    function loadUserWishes() {
+      const list = JSON.parse(localStorage.getItem('uniloop_user_wishes') || '[]');
+      const container = document.getElementById('wishGrid');
+      if (list.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 25px; color: #7d9b8d; background: #ffffff; border-radius: 12px; border: 1px dashed #e1ede4;">Chưa có tin tìm đồ nào được đăng.</div>`;
+        return;
+      }
+      container.innerHTML = list.map(item => `
+        <div style="background: #fdfaf4; border: 1.5px solid #f0e2c8; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 11px; font-weight: 700; color: #b45309; background: #fef3c7; padding: 3px 8px; border-radius: 6px;">${item.type}</span>
+            <h4 style="font-size: 15px; color: #78350f; font-weight: 800; margin: 8px 0 6px;">${item.name}</h4>
+            <p style="font-size: 12.5px; color: #92400e; margin-bottom: 12px;">👤 Người cần: <b>${item.contact}</b></p>
+          </div>
+          <a href="https://m.me/61595467705921" target="_blank" style="text-align: center; background: #b45309; color: #fff; text-decoration: none; padding: 7px; border-radius: 8px; font-size: 12px; font-weight: 700;">Hỗ trợ bạn này ➔</a>
+        </div>
+      `).join('');
+    }
+
+    function saveUserWish() {
+      const name = document.getElementById('wishName').value.trim();
+      const type = document.getElementById('wishType').value.trim();
+      const contact = document.getElementById('wishContact').value.trim();
+
+      if (!name || !type || !contact) {
+        alert('Vui lòng điền đầy đủ thông tin tin cần tìm!');
+        return;
+      }
+
+      const list = JSON.parse(localStorage.getItem('uniloop_user_wishes') || '[]');
+      list.unshift({ name, type, contact });
+      localStorage.setItem('uniloop_user_wishes', JSON.stringify(list));
+
+      document.getElementById('wishName').value = '';
+      document.getElementById('wishType').value = '';
+      document.getElementById('wishContact').value = '';
+      toggleWishForm();
+      loadUserWishes();
+      alert('Đã đăng tin cần tìm đồ thành công!');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadUserItems();
+      loadUserWishes();
+    });
+  </script>
+</body>
+</html>

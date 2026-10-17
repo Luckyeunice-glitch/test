@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kho học liệu sinh viên — UniLoop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #f4f7f4;
+      color: #1e3a2b;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      padding: 18px 6%;
+      background: #ffffff;
+      border-bottom: 1px solid #dce8df;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+      color: #1b4d3e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brand b {
+      color: #225740;
+    }
+    .back-home {
+      text-decoration: none;
+      color: #2d7a58;
+      font-weight: 700;
+      font-size: 14px;
+      background: #eaf4ed;
+      padding: 7px 14px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .back-home:hover {
+      background: #d8ebd9;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 40px 24px;
+    }
+
+    /* HERO BANNER */
+    .hero {
+      padding: 36px;
+      border: 1.5px solid #dbe7dd;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(27, 77, 62, 0.05);
+      margin-bottom: 35px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 42px);
+      margin: 0 0 12px;
+      color: #16382c;
+      font-weight: 800;
+    }
+    .hero p {
+      color: #4a6b5d;
+      max-width: 760px;
+      margin: 15px auto 0;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* THỐNG KÊ (STATS) */
+    .stats {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .stat {
+      background: #ebf5ee;
+      border: 1px solid #cce3d3;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      color: #1b4d3e;
+      font-weight: 500;
+    }
+    .stat b {
+      color: #225740;
+      font-weight: 800;
+    }
+
+    /* THANH TÌM KIẾM THEO TONE XANH LÁ */
+    .search-container {
+      max-width: 620px;
+      margin: 22px auto 10px;
+      position: relative;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f7faf7;
+      border: 1.5px solid #cce3d3;
+      border-radius: 14px;
+      padding: 10px 18px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+    }
+    .search-box:focus-within {
+      background: #ffffff;
+      border-color: #2d7a58;
+      box-shadow: 0 0 12px rgba(45, 122, 88, 0.2);
+    }
+    .search-icon {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+    .search-box input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #16382c;
+      font-size: 15px;
+    }
+    .search-box input::placeholder {
+      color: #7d9b8d;
+    }
+    .search-box button {
+      background: none;
+      border: none;
+      color: #6c8a7b;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border: 1.5px solid #cce3d3;
+      border-radius: 12px;
+      margin-top: 8px;
+      padding: 0;
+      list-style: none;
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+    .search-results li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      color: #1e3a2b;
+      text-decoration: none;
+      border-bottom: 1px solid #edf4ee;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .search-results li a:hover {
+      background: #eaf4ed;
+      color: #225740;
+    }
+    .search-results li:last-child a {
+      border-bottom: none;
+    }
+    .search-results .no-result {
+      padding: 14px;
+      text-align: center;
+      color: #6c8a7b;
+      font-size: 14px;
+    }
+
+    /* LƯỚI DANH SÁCH MÔN HỌC */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      padding: 22px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1.5px solid #dce8df;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 3px 12px rgba(27, 77, 62, 0.03);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #2d7a58;
+      box-shadow: 0 10px 24px rgba(45, 122, 88, 0.12);
+    }
+    .card-badge {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #4f7361;
+      margin-bottom: 6px;
+    }
+    .card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #1b4d3e;
+      margin: 4px 0 14px;
+    }
+    .tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      background: #e8f5ec;
+      color: #1f6b45;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .note {
+      color: #2d7a58;
+      font-weight: 700;
+      font-size: 13.5px;
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 24px 16px; }
+      header { padding: 16px 4%; }
+    }
+  </style>
+<link rel="stylesheet" href="theme-uniloop.css"></head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">🌱 <b>UniLoop</b> · Kho học liệu</div>
+    <a href="index.html" class="back-home">← Về Cổng chính</a>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main>
+    <section class="hero">
+      <h1>Kho tài liệu & ôn thi sinh viên</h1>
+      
+      <!-- KHUNG TÌM KIẾM -->
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Nhập tên môn học cần tìm (triết, kinh tế, tin học...)" autocomplete="off">
+          <button id="clearSearch" style="display: none;">✕</button>
+        </div>
+        <ul id="searchResults" class="search-results"></ul>
+      </div>
+
+      <p>Phiên bản rút gọn dùng cho bài thuyết trình môn học. Giữ một phần các môn tiêu biểu, tài liệu Google Drive/Azota và một số môn có chức năng thi trực tiếp trên web.</p>
+      
+      <div class="stats">
+        <div class="stat"><b>12</b> môn mẫu</div>
+        <div class="stat"><b>6</b> môn thi trực tiếp</div>
+        <div class="stat">Drive & Azota</div>
+      </div>
+    </section>
+
+    <!-- DANH SÁCH 12 MÔN HỌC -->
+    <div class="grid">
+      <a class="card" href="kinh-te-hoc.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>📊 Kinh tế học</h3>
+        <div class="tags"><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="phap-luat-dai-cuong.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>⚖️ Pháp luật đại cương (Pháp luật VN)</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="tu-tuong-hcm.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🌟 Tư tưởng HCM</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="tai-chinh-tien-te-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>💰 Tài chính tiền tệ</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="tin-hoc-co-ban-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>💻 Tin học cơ bản</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="kinh-te-chinh-tri-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>📈 Kinh tế chính trị Mác-Lênin</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span><span class="tag">Thi trên web</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="triet-hoc.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🧠 Triết Học</h3>
+        <div class="tags"><span class="tag">Azota</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="quan-tri-hoc-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🏢 Quản trị học</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="chu-nghia-xa-hoi-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🔴 Chủ nghĩa Xã hội Khoa học</h3>
+        <div class="tags"><span class="tag">Azota</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="tu-duy-he-thong-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🧩 Tư duy hệ thống</h3>
+        <div class="tags"><span class="tag">Azota</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="thuong-mai-dien-tu-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>🛒 Thương mại điện tử</h3>
+        <div class="tags"><span class="tag">Google Drive</span><span class="tag">Azota</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+
+      <a class="card" href="marketing-can-ban-utt.html">
+        <div class="card-badge">📚 Môn học</div>
+        <h3>📢 Marketing căn bản</h3>
+        <div class="tags"><span class="tag">Google Drive</span></div>
+        <div class="note">Mở trang môn học →</div>
+      </a>
+    </div>
+    <!-- ========================================== -->
+    <!-- MỤC TÀI LIỆU BỔ SUNG DO SINH VIÊN ĐÓNG GÓP -->
+    <!-- ========================================== -->
+    <section style="margin-top: 60px; padding-top: 30px; border-top: 2px dashed #cce3d3;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
+        <div>
+          <h2 style="font-size: 24px; color: #16382c; font-weight: 800;">📂 Tài liệu bổ sung từ sinh viên</h2>
+          <p style="font-size: 14px; color: #52796f; margin-top: 4px;">Nơi các bạn sinh viên tự do đóng góp thêm đề cương, giáo trình mới</p>
+        </div>
+        <button onclick="toggleDocForm()" style="background: #225740; color: #fff; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          ➕ Đóng góp tài liệu mới
+        </button>
+      </div>
+
+      <!-- FORM NHẬP TÀI LIỆU (ẨN/HIỆN) -->
+      <div id="docUploadForm" style="display: none; background: #ffffff; border: 1.5px solid #cce3d3; border-radius: 18px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(27,77,62,0.08);">
+        <h3 style="font-size: 17px; color: #1b4d3e; margin-bottom: 16px;">Chia sẻ tài liệu học tập của bạn</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Tên môn học / Tiêu đề tài liệu *</label>
+            <input type="text" id="docTitle" placeholder="Vd: Đề cương Pháp luật có đáp án..." style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #cce3d3; margin-top: 6px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Đường link tải (Drive, Azota...) *</label>
+            <input type="text" id="docLink" placeholder="https://drive.google.com/..." style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #cce3d3; margin-top: 6px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Người đóng góp (Tên/Khoá)</label>
+            <input type="text" id="docAuthor" placeholder="Vd: Nguyễn Văn A - K76" style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #cce3d3; margin-top: 6px; outline: none;">
+          </div>
+          <div>
+            <label style="font-size: 13px; font-weight: 600; color: #1b4d3e;">Chọn ảnh chụp tài liệu / bìa sách *</label>
+            <input type="file" id="docImage" accept="image/*" style="width: 100%; padding: 7px 10px; border-radius: 10px; border: 1px solid #cce3d3; margin-top: 6px; background: #f9fbf9;">
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button onclick="saveUserDoc()" style="background: #2d7a58; color: #fff; border: none; padding: 10px 24px; border-radius: 10px; font-weight: 700; cursor: pointer;">Đăng tài liệu ngay</button>
+          <button onclick="toggleDocForm()" style="background: #eaf4ed; color: #225740; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 600; cursor: pointer;">Hủy</button>
+        </div>
+      </div>
+
+      <!-- LƯỚI HIỂN THỊ CÁC TÀI LIỆU BỔ SUNG -->
+      <div id="userDocsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;">
+        <!-- Dữ liệu đăng sẽ tự động xuất hiện ở đây -->
+      </div>
+    </section>
+  </main>
+
+  <!-- LOGIC TÌM KIẾM -->
+  <script>
+    const subjects = [
+      { title: "Chủ nghĩa xã hội khoa học", url: "chu-nghia-xa-hoi-utt.html" },
+      { title: "Kinh tế chính trị Mác - Lênin", url: "kinh-te-chinh-tri-utt.html" },
+      { title: "Kinh tế học", url: "kinh-te-hoc.html" },
+      { title: "Marketing căn bản", url: "marketing-can-ban-utt.html" },
+      { title: "Pháp luật đại cương", url: "phap-luat-dai-cuong.html" },
+      { title: "Quản trị học", url: "quan-tri-hoc-utt.html" },
+      { title: "Tài chính tiền tệ", url: "tai-chinh-tien-te-utt.html" },
+      { title: "Thương mại điện tử", url: "thuong-mai-dien-tu-utt.html" },
+      { title: "Tin học cơ bản", url: "tin-hoc-co-ban-utt.html" },
+      { title: "Triết học Mác - Lênin", url: "triet-hoc.html" },
+      { title: "Tư duy hệ thống", url: "tu-duy-he-thong-utt.html" },
+      { title: "Tư tưởng Hồ Chí Minh", url: "tu-tuong-hcm.html" },
+      { title: "Thi trắc nghiệm (Quiz)", url: "quiz.html" }
+    ];
+
+    function removeAccents(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const clearBtn = document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input', function() {
+      const query = removeAccents(this.value.trim());
+      if (query.length > 0) {
+        clearBtn.style.display = 'block';
+        const filtered = subjects.filter(item => removeAccents(item.title).includes(query));
+        if (filtered.length > 0) {
+          searchResults.innerHTML = filtered.map(item => `
+            <li>
+              <a href="${item.url}">
+                <span>📄 ${item.title}</span>
+                <span style="font-size: 11px; opacity: 0.6;">Truy cập ➔</span>
+              </a>
+            </li>
+          `).join('');
+        } else {
+          searchResults.innerHTML = `<li class="no-result">Không tìm thấy tài liệu phù hợp</li>`;
+        }
+        searchResults.style.display = 'block';
+      } else {
+        clearBtn.style.display = 'none';
+        searchResults.style.display = 'none';
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      searchResults.style.display = 'none';
+      searchInput.focus();
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-container')) {
+        searchResults.style.display = 'none';
+      }
+    });
+  </script>
+  <script>
+  function toggleDocForm() {
+    const f = document.getElementById('docUploadForm');
+    f.style.display = (f.style.display === 'none' || f.style.display === '') ? 'block' : 'none';
+  }
+
+  function loadUserDocs() {
+    const list = JSON.parse(localStorage.getItem('uniloop_user_docs') || '[]');
+    const container = document.getElementById('userDocsGrid');
+    if (list.length === 0) {
+      container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #7d9b8d; background: #ffffff; border-radius: 16px; border: 1px dashed #cce3d3;">Chưa có tài liệu bổ sung nào. Hãy là người đầu tiên đóng góp nhé! 🌱</div>`;
+      return;
+    }
+    container.innerHTML = list.map(item => `
+      <div style="background: #fff; border-radius: 16px; border: 1.5px solid #dce8df; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(27,77,62,0.04);">
+        <img src="${item.image}" style="width: 100%; height: 160px; object-fit: cover; background: #eaf4ed;" alt="Ảnh tài liệu">
+        <div style="padding: 16px; flex: 1; display: flex; flex-direction: column;">
+          <span style="font-size: 11px; background: #e8f5ec; color: #1f6b45; padding: 3px 8px; border-radius: 6px; font-weight: 700; width: fit-content; margin-bottom: 8px;">Sinh viên đóng góp</span>
+          <h4 style="font-size: 16px; color: #1b4d3e; font-weight: 800; margin-bottom: 6px;">${item.title}</h4>
+          <p style="font-size: 12.5px; color: #6c8a7b; margin-bottom: 14px;">Bởi: ${item.author || 'Sinh viên ẩn danh'}</p>
+          <a href="${item.link}" target="_blank" style="margin-top: auto; display: block; text-align: center; background: #225740; color: #fff; text-decoration: none; padding: 9px; border-radius: 8px; font-weight: 700; font-size: 13px;">Mở tài liệu ➔</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function saveUserDoc() {
+    const title = document.getElementById('docTitle').value.trim();
+    const link = document.getElementById('docLink').value.trim();
+    const author = document.getElementById('docAuthor').value.trim();
+    const fileInput = document.getElementById('docImage');
+
+    if (!title || !link) {
+      alert('Vui lòng nhập Tên tài liệu và Link!');
+      return;
+    }
+    if (!fileInput.files || !fileInput.files[0]) {
+      alert('Vui lòng chọn 1 bức ảnh chụp tài liệu!');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const newDoc = {
+        title: title,
+        link: link,
+        author: author,
+        image: e.target.result // Lưu ảnh dạng Base64
+      };
+      const list = JSON.parse(localStorage.getItem('uniloop_user_docs') || '[]');
+      list.unshift(newDoc);
+      localStorage.setItem('uniloop_user_docs', JSON.stringify(list));
+      
+      // Xóa form và tải lại danh sách
+      document.getElementById('docTitle').value = '';
+      document.getElementById('docLink').value = '';
+      document.getElementById('docAuthor').value = '';
+      fileInput.value = '';
+      toggleDocForm();
+      loadUserDocs();
+      alert('Đăng tài liệu thành công!');
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+
+  // Tự động load khi mở trang
+  document.addEventListener('DOMContentLoaded', loadUserDocs);
+</script>
+<!-- BONG BÓNG CHAT MESSENGER NỔI KẾT NỐI FANPAGE -->
+<div id="fbChatBubble" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; display: flex; align-items: center; gap: 10px;">
+  <!-- Lời chào nhỏ -->
+  <div style="background: #ffffff; color: #1b4d3e; font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.12); border: 1px solid #dce8df;">
+    Chat với UniLoop 💬
+  </div>
+  <!-- Nút tròn Messenger -->
+  <a href="https://m.me/61595467705921" target="_blank" style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #00B2FF, #006AFF); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(0, 106, 255, 0.4); text-decoration: none; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Nhắn tin với Fanpage UniLoop">
+    <!-- Icon Messenger chuẩn -->
+    <svg width="30" height="30" viewBox="0 0 28 28" fill="none">
+      <path d="M14 2C7.37 2 2 7.07 2 13.33C2 16.9 3.73 20.07 6.44 22.1V26L10.19 23.94C11.39 24.28 12.67 24.47 14 24.47C20.63 24.47 26 19.4 26 13.33C26 7.07 20.63 2 14 2ZM15.42 17.26L12.35 13.98L6.37 17.31L12.94 10.33L16.06 13.61L21.99 10.33L15.42 17.26Z" fill="white"/>
+    </svg>
+  </a>
+</div>
+</body>
+</html>
