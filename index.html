@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniLoop - Cổng kết nối & Học liệu sinh viên</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #f4f7f4;
+      color: #1f3d2b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+    .container {
+      max-width: 960px;
+      width: 100%;
+      text-align: center;
+    }
+    /* Logo UniLoop kiểu lá mầm */
+    .brand-logo {
+      font-size: 36px;
+      font-weight: 900;
+      color: #1b4d3e;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brand-tagline {
+      display: inline-block;
+      background: #d8ebd9;
+      color: #1b4d3e;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 28px;
+      color: #16382c;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 15px;
+      color: #4a6b5d;
+      margin-bottom: 35px;
+    }
+
+    /* Lưới 3 lựa chọn */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .portal-card {
+      background: #ffffff;
+      border: 2px solid #e1ebe2;
+      border-radius: 20px;
+      padding: 30px 22px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(27, 77, 62, 0.05);
+      position: relative;
+    }
+    .portal-card:hover {
+      transform: translateY(-7px);
+      border-color: #2d7a58;
+      box-shadow: 0 14px 28px rgba(45, 122, 88, 0.15);
+    }
+    /* Card nổi bật UniLoop */
+    .portal-card.highlight {
+      background: #ebf5ee;
+      border-color: #8ac29f;
+    }
+    .card-badge {
+      position: absolute;
+      top: -12px;
+      background: #2d7a58;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+    .card-icon {
+      font-size: 46px;
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #1b4d3e;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: #4f685c;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+    .btn-action {
+      margin-top: auto;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .btn-study {
+      background: #e2ede5;
+      color: #1b4d3e;
+    }
+    .btn-loop {
+      background: #225740;
+      color: #ffffff;
+    }
+    .btn-fb {
+      background: #1877f2;
+      color: #ffffff;
+    }
+    .portal-card:hover .btn-action {
+      opacity: 0.9;
+    }
+  </style>
+<link rel="stylesheet" href="theme-uniloop.css"></head>
+<body>
+
+  <div class="container">
+    <div class="brand-logo">🌱 UniLoop</div>
+    <br>
+    <div class="brand-tagline">Dùng lại thay vì bỏ đi · Reuse Not Waste</div>
+    
+    <h1>Chào mừng bạn đến với Không gian Sinh viên</h1>
+    <p class="subtitle">Vui lòng chọn cổng thông tin bạn muốn trải nghiệm hôm nay</p>
+
+    <div class="portal-grid">
+      <!-- MỤC 1: KHO HỌC LIỆU -->
+      <a href="tai-lieu.html" class="portal-card">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Kho Tài Liệu & Ôn Thi</div>
+        <div class="card-desc">Tài liệu, đề cương tổng hợp các môn học và bộ công cụ luyện đề trắc nghiệm trực tuyến.</div>
+        <span class="btn-action btn-study">Vào học ngay ➔</span>
+      </a>
+
+      <!-- MỤC 2: VÒNG TUẦN HOÀN ĐỒ DÙNG UNILOOP (MỚI) -->
+      <a href="uniloop.html" class="portal-card highlight">
+        <span class="card-badge">DỰ ÁN XANH</span>
+        <div class="card-icon">🔄</div>
+        <div class="card-title">Tuần Hoàn Đồ Dùng</div>
+        <div class="card-desc">Trao đổi sách vở, đồ dùng học tập cũ – Kéo dài vòng đời món đồ, tiết kiệm chi phí cho sinh viên.</div>
+        <span class="btn-action btn-loop">Khám phá UniLoop 🌱</span>
+      </a>
+
+      <!-- MỤC 3: FANPAGE -->
+      <a href="https://www.facebook.com/profile.php?id=61595467705921#" target="_blank" class="portal-card">
+        <div class="card-icon">📢</div>
+        <div class="card-title">Fanpage Cộng Đồng</div>
+        <div class="card-desc">Theo dõi để nhận thông báo mới nhất, giao lưu và lan tỏa lối sống xanh, tiết kiệm cùng UniLoop.</div>
+        <span class="btn-action btn-fb">Ghé thăm Fanpage ↗</span>
+      </a>
+    </div>
+  </div>
+<!-- CHÂN TRANG: FORM ĐÁNH GIÁ & NÚT ADMIN BÍ MẬT 
+<footer style="margin-top: 60px; padding: 30px 20px 20px; text-align: center; border-top: 1px solid #dce8df; background: #ffffff;">
+  
+  <!-- NÚT MỞ BẢNG ĐÁNH GIÁ CHO SINH VIÊN -->
+  <div style="margin-bottom: 20px;">
+    <button onclick="toggleFeedbackModal()" style="background: #eaf4ed; color: #1b4d3e; border: 1px solid #cce3d3; padding: 8px 18px; border-radius: 20px; font-weight: 700; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+      ⭐ Gửi đánh giá & Góp ý cho website
+    </button>
+  </div>
+
+  <p style="font-size: 13px; color: #64748b; margin-bottom: 8px;">© 2026 UniLoop — Dự án Học liệu & Tuần hoàn Đồ dùng Sinh viên</p>
+  
+  <!-- NÚT ĐĂNG NHẬP ADMIN KÍN ĐÁO -->
+  <div>
+    <a href="admin.html" style="font-size: 11.5px; color: #94a3b8; text-decoration: none; opacity: 0.6; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">
+      🔒 Quản trị viên (Admin)
+    </a>
+  </div>
+</footer>
+
+<!-- KHUNG POPUP GỬI ĐÁNH GIÁ (ẨN/HIỆN) -->
+<div id="feedbackModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+  <div style="background: #ffffff; border-radius: 18px; padding: 25px; max-width: 380px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    <h3 style="font-size: 18px; color: #1b4d3e; margin-bottom: 6px; text-align: center;">Đánh giá trải nghiệm</h3>
+    <p style="font-size: 13px; color: #64748b; margin-bottom: 16px; text-align: center;">Ý kiến của bạn giúp UniLoop hoàn thiện hơn!</p>
+    
+    <label style="font-size: 12.5px; font-weight: 700; color: #1b4d3e;">Mức độ hài lòng:</label>
+    <select id="userStars" style="width: 100%; padding: 9px; border-radius: 8px; border: 1px solid #cce3d3; margin: 6px 0 12px; outline: none;">
+      <option value="5">⭐⭐⭐⭐⭐ Vô địch (5 sao)</option>
+      <option value="4">⭐⭐⭐⭐ Rất tốt (4 sao)</option>
+      <option value="3">⭐⭐⭐ Bình thường (3 sao)</option>
+      <option value="2">⭐⭐ Cần cải thiện (2 sao)</option>
+      <option value="1">⭐ Tệ (2 sao)</option>
+    </select>
+
+    <label style="font-size: 12.5px; font-weight: 700; color: #1b4d3e;">Tên của bạn (hoặc Khoá):</label>
+    <input type="text" id="fbUserName" placeholder="Vd: Hoàng Long - K76" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cce3d3; margin: 6px 0 12px; outline: none; box-sizing: border-box;">
+
+    <label style="font-size: 12.5px; font-weight: 700; color: #1b4d3e;">Lời nhắn / Góp ý:</label>
+    <textarea id="fbUserComment" rows="3" placeholder="Website cần cải thiện thêm điều gì..." style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cce3d3; margin: 6px 0 16px; outline: none; box-sizing: border-box; font-family: inherit;"></textarea>
+
+    <div style="display: flex; gap: 8px;">
+      <button onclick="submitUserFeedback()" style="flex: 1; background: #225740; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer;">Gửi đánh giá</button>
+      <button onclick="toggleFeedbackModal()" style="background: #e2ede5; color: #1b4d3e; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer;">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<!-- CODE JS TỰ ĐỘNG ĐẾM LƯỢT TRUY CẬP VÀ GỬI ĐÁNH GIÁ -->
+<script>
+ // API ĐẾM LƯỢT TRUY CẬP THẬT (TỰ ĐỘNG +1 KHI CÓ NGƯỜI VÀO)
+  fetch('https://api.counterapi.dev/v1/uniloop-official-2026/visits/up')
+    .catch(err => console.log('Counter error:', err));
+
+  // 2. Ẩn/Hiện Popup đánh giá
+  function toggleFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  // 3. Xử lý khi sinh viên bấm Gửi đánh giá
+  function submitUserFeedback() {
+    const name = document.getElementById('fbUserName').value.trim() || 'Sinh viên ẩn danh';
+    const stars = parseInt(document.getElementById('userStars').value);
+    const comment = document.getElementById('fbUserComment').value.trim();
+
+    if (!comment) {
+      alert('Vui lòng nhập vài dòng góp ý nha bạn!');
+      return;
+    }
+
+    const feedbacks = JSON.parse(localStorage.getItem('uniloop_feedbacks') || '[]');
+    feedbacks.unshift({
+      name: name,
+      stars: stars,
+      comment: comment,
+      time: 'Vừa xong'
+    });
+
+    localStorage.setItem('uniloop_feedbacks', JSON.stringify(feedbacks));
+    alert('Cảm ơn bạn đã gửi đánh giá cho UniLoop! 🌱');
+    toggleFeedbackModal();
+    document.getElementById('fbUserComment').value = '';
+  }
+</script>
+<script>
+  // 1. TỰ ĐỘNG ĐẾM LƯỢT TRUY CẬP THẬT BẰNG API (+1 mỗi khi có người vào)
+  fetch('https://api.counterapi.dev/v1/uniloop-official-2026/visits/up')
+    .catch(err => console.log('Lỗi đếm:', err));
+
+  // 2. Ẩn/Hiện Popup đánh giá
+  function toggleFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  // 3. Link Google Sheet Apps Script của bạn
+  const GOOGLE_SHEET_API = "https://script.google.com/macros/s/AKfycbw2UqFT8ovo1c4bm_Ya3LTqUTxxlOqaQt0BSoC-agCNXm4zqEt0tJKvfDrbFhtSseJu/exec";
+
+  // 4. Xử lý khi sinh viên bấm Gửi đánh giá
+  function submitUserFeedback() {
+    const name = encodeURIComponent(document.getElementById('fbUserName').value.trim() || 'Sinh viên ẩn danh');
+    const stars = document.getElementById('userStars').value;
+    const comment = encodeURIComponent(document.getElementById('fbUserComment').value.trim());
+
+    if (!comment) {
+      alert('Vui lòng nhập lời góp ý nha bạn!');
+      return;
+    }
+
+    const sendUrl = `${GOOGLE_SHEET_API}?action=add&name=${name}&stars=${stars}&comment=${comment}`;
+
+    // Gửi thẳng vào Google Sheet
+    fetch(sendUrl)
+      .then(res => res.json())
+      .then(() => {
+        alert('Cảm ơn bạn! Đánh giá đã được lưu vào hệ thống UniLoop 🌱');
+        toggleFeedbackModal();
+        document.getElementById('fbUserComment').value = '';
+      })
+      .catch(() => {
+        alert('Đã gửi đánh giá thành công!');
+        toggleFeedbackModal();
+        document.getElementById('fbUserComment').value = '';
+      });
+  }
+</script>
+</body>
+</html>
